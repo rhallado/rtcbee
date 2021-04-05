@@ -94,7 +94,7 @@ for ((i=1;i<=amount;i++)); do
   fi
   server_address="$output"
   client_endpoint="http://${server_address}:5080/${context}/viewer.jsp?host=${server_address}&stream=${name}"
-  chromium-browser --single-process --user-data-dir=/tmp/chrome"$(date +%s%N)" --headless --disable-gpu --mute-audio --window-size=1024,768 --remote-debugging-port=$debug_port "$client_endpoint" 3>&1 1>"log/rtcbee_${debug_port}.log" 2>&1 &
+  chromium-browser --no-sandbox --single-process --user-data-dir=/tmp/chrome"$(date +%s%N)" --headless --disable-gpu --mute-audio --window-size=1024,768 --remote-debugging-port=$debug_port "$client_endpoint" 3>&1 1>"log/rtcbee_${debug_port}.log" 2>&1 &
   pid=$!
   pids[$i-1]=$pid
   echo "Dispatching Bee $i, PID(${pid})..."
