@@ -58,14 +58,14 @@ function checkStatus {
 
   echo "Check Status on Bee $bee..."
   failure=0
-  success=0
+  success=1
   regex_fail='Subscribe\.(InvalidName|Fail|(Connection\.Closed))'
   regex_success='Subscribe\.Start'
 
   while read -r line
   do
     if [[ $line =~ $regex_fail ]]; then
-      failure=1
+      failure=0
     elif [[ $line =~ $regex_success ]]; then
       success=1
     fi
